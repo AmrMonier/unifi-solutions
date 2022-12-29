@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "988712bf-ac32-4119-b6d8-4950c4a7db90",
+		"name": "unifi solutions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "7218995"
+	},
+	"item": [
+		{
+			"name": "todos",
+			"item": [
+				{
+					"name": "create todo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"new todo\",\n    \"user_id\": \"63adb38579765024818d2788\"\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3030/todos"
+					},
+					"response": []
+				},
+				{
+					"name": "update todo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"new updated todo\",\n    \n    \"status\": \"as\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3030/todos/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"todos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63adcfcd874fac3f346325c5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get todo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"new todo\",\n    \"user_id\": \"63adb38579765024818d2784\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3030/todos/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"todos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63adb9908a282ece2f869a91"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete todo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"new todo\",\n    \"user_id\": \"63adb38579765024818d2784\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3030/todos/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"todos",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63adb9908a282ece2f869a91"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "all user todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3030/user/todos?id=63adb38579765024818d2786",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3030",
+							"path": [
+								"user",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63adb38579765024818d2786"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
