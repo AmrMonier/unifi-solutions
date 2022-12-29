@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { exists, isValidObjectId } from "../utilis/validatorHelpers.js";
 const { Types, connection } = mongoose;
 import { User } from "../models/User.js";
 import { Todo } from "../models/Todo.js";
@@ -71,13 +71,3 @@ export const todoExistsValidator = (req, res, next) => {
     return res.status(404).json({ msg: "resource not found" });
   next();
 };
-
-const isValidObjectId = (id) => {
-  return isNotEmpty(id) && Types.ObjectId.isValid(id);
-};
-
-async function exists(name, condition) {
-  const collection = connection.db.collection(name);
-  const doc = await collection.findOne(condition);
-  return doc ? true : false;
-}
