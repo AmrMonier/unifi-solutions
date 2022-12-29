@@ -1,6 +1,11 @@
-import mongoose from "mongoose";
-import { exists, isValidObjectId } from "../utilis/validatorHelpers.js";
-const { Types, connection } = mongoose;
+import { Types } from "mongoose";
+import {
+  exists,
+  isValidObjectId,
+  SendError,
+  isNotEmpty,
+} from "../utilis/validatorHelpers.js";
+
 import { User } from "../models/User.js";
 import { Todo } from "../models/Todo.js";
 
@@ -23,13 +28,6 @@ export const createTodoValidator = (req, res, next) => {
   if (errors.length !== 0) return SendError(res, 400, errors);
   next();
 };
-
-function SendError(res, status, data) {
-  return res.status(status).json(data);
-}
-function isNotEmpty(value) {
-  return value && value.trim() !== "" ? true : false;
-}
 
 export const updateTodoValidator = (req, res, next) => {
   const { id } = req.params;

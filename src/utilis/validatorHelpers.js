@@ -10,3 +10,10 @@ export async function exists(name, condition) {
   const doc = await collection.findOne(condition);
   return doc ? true : false;
 }
+export function SendError(res, status, data) {
+  return res.status(status).json(data);
+}
+
+export function isNotEmpty(value) {
+  return value && value.trim() !== "" ? true : false;
+}
