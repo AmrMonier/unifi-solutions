@@ -1,6 +1,9 @@
 import { Router } from "express";
-import { createTodo } from "../controller/TodosController.js";
-import { createTodoValidator } from "../validators/todosValidators.js";
+import { createTodo, getTodoById } from "../controller/TodosController.js";
+import {
+  createTodoValidator,
+  isValidObjectId,
+} from "../validators/todosValidators.js";
 
 export const todoRouter = new Router();
 
@@ -19,4 +22,17 @@ todoRouter.post(
         });
   },
   createTodo
+);
+
+todoRouter.get(
+  "/:id",
+  (req, res, next) => {
+    const { id } = req.params;
+    return isValidObjectId(id)
+      ? next()
+      : res.status(404).json({
+          msg: "resource not found",
+        });
+  },
+  getTodoById
 );
