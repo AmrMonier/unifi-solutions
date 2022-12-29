@@ -5,6 +5,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { connect } from "mongoose";
 import { todoRouter } from "./src/routes/TodosRoutes.js";
+import { userRoutes } from "./src/routes/UserRoutes.js";
 
 connect(process.env.MONGO_URI)
   .then(() => {
@@ -20,7 +21,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // register routes
-app.use('/todos', todoRouter)
+app.use("/todos", todoRouter);
+app.use("/user", userRoutes);
+
 // register middlewares
 
 const PORT = process.env.PORT || 3030;

@@ -38,3 +38,11 @@ export const updateTodo = async (req, res) => {
   await todo.save();
   return res.json({ data: todo });
 };
+
+export const getAllUserTodos = async (req, res) => {
+  const { id } = req.query;
+  const todos = await Todo.find({
+    user: id,
+  });
+  return res.json({ data: todos });
+};
