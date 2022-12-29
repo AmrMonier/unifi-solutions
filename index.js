@@ -27,13 +27,11 @@ app.use("/todos", todoRouter);
 
 app.use("/user", userRoutes);
 
-
 // register middlewares
-app.use(errorHandler)
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3030;
 
 app.listen(PORT, () => {
-  console.log();
   console.log(`App is up and running on http://localhost:${PORT}`);
 });

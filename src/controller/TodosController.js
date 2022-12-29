@@ -1,8 +1,8 @@
 import { Todo } from "../models/Todo.js";
 
 export const createTodo = async (req, res) => {
-  const { title, user_id } = req.body;
-  const todo = await Todo.create({ title, user: user_id });
+  const { title } = req.body;
+  const todo = await Todo.create({ title, user: req.user._id });
   return res.status(201).json({ data: todo });
 };
 
@@ -18,7 +18,7 @@ export const getTodoById = async (req, res) => {
 
 export const deleteTodo = async (req, res) => {
   const { id } = req.params;
-  const todo = await Todo.findByIdAndDelete(id);
+  const todo = await Todo.findOneAndDelete({ _id: id, user: req.user._id });
   if (!todo)
     return res.status(404).json({
       msg: "resource not found",
@@ -28,7 +28,7 @@ export const deleteTodo = async (req, res) => {
 
 export const updateTodo = async (req, res) => {
   const { id } = req.params;
-  const todo = await Todo.findById(id);
+  const todo = await Todo.findOne({ _id: id, user: req.user._id });
   if (!todo)
     return res.status(404).json({
       msg: "resource not found",
@@ -40,9 +40,8 @@ export const updateTodo = async (req, res) => {
 };
 
 export const getAllUserTodos = async (req, res) => {
-  const { id } = req.query;
   const todos = await Todo.find({
-    user: id,
+    user: req.user.id,
   });
   return res.json({ data: todos });
 };

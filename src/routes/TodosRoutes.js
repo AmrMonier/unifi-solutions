@@ -10,13 +10,14 @@ import {
   todoExistsValidator,
   updateTodoValidator,
 } from "../validators/todosValidators.js";
+import { isAuthenticated } from "../middlewares/authenticated.js";
 
 export const todoRouter = new Router();
 
-todoRouter.post("/", createTodoValidator, createTodo);
+todoRouter.post("/", isAuthenticated, createTodoValidator, createTodo);
 
-todoRouter.get("/:id", todoExistsValidator, getTodoById);
+todoRouter.get("/:id", isAuthenticated, todoExistsValidator, getTodoById);
 
-todoRouter.delete("/:id", todoExistsValidator, deleteTodo);
+todoRouter.delete("/:id", isAuthenticated, todoExistsValidator, deleteTodo);
 
-todoRouter.put("/:id", updateTodoValidator, updateTodo);
+todoRouter.put("/:id", isAuthenticated, updateTodoValidator, updateTodo);

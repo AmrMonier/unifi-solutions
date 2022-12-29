@@ -5,10 +5,11 @@ import {
   signupValidator,
   userExistsValidator,
 } from "../validators/userValidators.js";
+import { isAuthenticated } from "../middlewares/authenticated.js";
 
 export const userRoutes = new Router();
 
-userRoutes.get("/todos", userExistsValidator, getAllUserTodos);
+userRoutes.get("/todos", isAuthenticated, getAllUserTodos);
 
 userRoutes.post("/signup", signupValidator, signup);
 userRoutes.post("/login", login);

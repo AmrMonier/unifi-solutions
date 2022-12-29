@@ -20,7 +20,7 @@ export async function signup(req, res) {
 export async function login(req, res) {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
-  console.log(user.password, password)
+  
   if (!user || !password || !compareSync(password, user.password))
     return res.status(401).json({
       msg: "wrong email or password",
@@ -34,5 +34,5 @@ export async function login(req, res) {
 }
 
 function generateToken(payload) {
-  return jwt.sign(payload, process.env.APP_SECRET);
+  return jwt.sign(payload, process.env.APP_SECRET, {expiresIn: '1h'});
 }

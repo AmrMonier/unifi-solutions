@@ -6,25 +6,14 @@ import {
   isNotEmpty,
 } from "../utilis/validatorHelpers.js";
 
-import { User } from "../models/User.js";
 import { Todo } from "../models/Todo.js";
 
 export const createTodoValidator = (req, res, next) => {
-  const { title, user_id } = req.body;
+  const { title } = req.body;
   const errors = [];
   if (!isNotEmpty(title))
     errors.push({ field: "title", value: title, msg: "required field" });
-  if (!isValidObjectId(user_id)) {
-    errors.push({ field: "user_id", value: user_id, msg: "required field" });
-  }
 
-  if (!exists(User.collection.name, { _id: Types.ObjectId(user_id) })) {
-    errors.push({
-      field: "user_id",
-      value: user_id,
-      msg: "user doesn't exist",
-    });
-  }
   if (errors.length !== 0) return SendError(res, 400, errors);
   next();
 };
